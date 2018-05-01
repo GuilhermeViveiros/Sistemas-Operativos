@@ -43,3 +43,14 @@ char** mysystem (char *command) {
    // perror ("Ex6 not found!\n");
     return argumentos;   
 }
+
+
+int checkCommand (char* frase){
+    while(*frase){
+        if (*frase++=='$')
+            return 1;
+    }
+    return 0;
+}
+
+

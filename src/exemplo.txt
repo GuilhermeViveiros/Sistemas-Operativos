@@ -1,8 +1,7 @@
-Decomento de texto que irá conter varios textes feitos 
+Irá conter varios textes feitos 
 Ex1 :
 Este comando lista os ficheiros:
 $ ls
 Agora podemos ordenar estes ficheiros:
-$| sort
+$ sort
 E escolher o primeiro:
-$| head -1

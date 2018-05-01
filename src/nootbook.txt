@@ -1,0 +1,22 @@
+Irá conter varios textes feitos 
+Ex1 :
+Este comando lista os ficheiros:
+$ ls
+>>>>
+Makefile
+buffer.c
+execut.c
+exemplo.txt
+main.c
+nootbook.txt
+obj
+program
+<<<<
+Agora podemos ordenar estes ficheiros:
+$ ps
+>>>>
+  PID TTY           TIME CMD
+  492 ttys000    0:00.04 /bin/bash -l
+ 1796 ttys000    0:00.00 ./program
+<<<<
+E escolher o primeiro:
