@@ -1,26 +1,45 @@
 #include "execut.h"
+#include "buffer.h"
 
 
-void executa(char **commandos){
-    /*so temos 3 casos 
-    ** $ ls  -> executa so ls
-    ** $ |ls -> executa ls com o stdin recebido anteriormente
-    ** $ (numero) | ls -> executa ls com o stdin recebido na ordem do comando igual ao numero
-    */
+#define Max 10
 
-    int my_pipe[2];
-    //estou a criar um pipe para interagir entre comandos
-    pipe(my_pipe);
+//Recebe como argumentos uma frase e separa-a em várias palavras
+char** mysystem (char *command) {
 
-    if ( strcmp (*commandos , "$") == 0 ) {
-        //primeiro commando é o caracter "$"
-        //close(my_pipe[0]);
-        //dup2 (my_pipe[1] , 1);
-        commandos++;
-        execvp( *commandos , commandos);
-        perror("Se chegar aqui temos que devolver o ficheiro intacto!\n");
-        close(my_pipe[1]);
-        _exit(-1);
-   
-    }
+    int i=0, x=0;
+    char tmp[1024];
+    char **argumentos;
+    argumentos = malloc (sizeof (char*)*Max);
+    *argumentos = malloc (sizeof (char)*Max);
+
+        while (*command){
+            if (*command == ' ' && *(command+1) == ' '){
+                (command++);
+            }
+            else {
+                if (*command == ' ') {
+                tmp[i] = '\0';
+                argumentos[x] = malloc (sizeof (char)*20);
+                strcpy ( argumentos[x++] , tmp);
+                i=0; 
+                (command++);
+                }
+                    else {
+                        if (*(command+1) == '\0') {
+                            tmp[i++] = *(command);
+                            tmp[i] = '\0';
+                            argumentos[x] = malloc (sizeof (char)*20);
+                             strcpy ( argumentos[x++] , tmp);
+                            i=0; 
+                            (command++);
+                        }
+                        else tmp[i++] = *(command++);
+                    }
+            }  
+        }
+    argumentos[x] = NULL;
+    //execvp("./Ex6" , argumentos);
+   // perror ("Ex6 not found!\n");
+    return argumentos;   
 }
