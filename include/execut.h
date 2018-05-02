@@ -14,4 +14,6 @@ char** mysystem(char *command);
 //verifica se uma determinada instrucao é comando ou nao
 int checkCommand(char* frase);
 
+
+
 #endif /* execut */

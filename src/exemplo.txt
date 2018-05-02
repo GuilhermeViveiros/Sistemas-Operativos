@@ -3,5 +3,6 @@ Ex1 :
 Este comando lista os ficheiros:
 $ ls
 Agora podemos ordenar estes ficheiros:
-$ sort
+$ ls
 E escolher o primeiro:
+$ ls -l

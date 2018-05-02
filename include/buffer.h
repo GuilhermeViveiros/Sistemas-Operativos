@@ -18,6 +18,8 @@ struct ligada{
     char *phrase;
     //lista de palavras da frase
     char **result;
+    //lista o resultado do ficheiro
+    char *command_result;
 };
 
 // ideia é receber um int filedes e um Tamanho e este preenche se automaticamente!
@@ -31,7 +33,7 @@ typedef struct buff{
 //le do fildes para o buf
 int readln(int fildes, void *buf );
 
-//executa o buffer 
+//executa o buffer para os comandos com $
 void exec_buffer(Buff x,int filedes);
 
 //remove um buffer

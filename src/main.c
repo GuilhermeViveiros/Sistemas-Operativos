@@ -20,15 +20,11 @@ int main(){
     
    
 
-    my_buff = create_buffer(fint,7);
-
-    while(i<my_buff->size){
-        printf("%s\n" , my_buff->lista[i++].phrase);
-    }
+    my_buff = create_buffer(fint,9);
 
     exec_buffer(my_buff,fout);
     
-    
+
     //Falta acabar esta funçao
     //destroy_buffer(my_buff);
    
