@@ -128,15 +128,15 @@ void load(Buff x){
                         close(my_pipe[0]);
                         write(my_pipe[1], intput , sizeof(intput));
                         close(my_pipe[1]);
-                        _exit(-1);
+                       // _exit(-1);
                     }
                      else {
-                        
+                         
                         close(my_pipe[1]);
                         dup2(my_pipe[0],0);
                         close(my_pipe[0]);
                         dup2(x->buff_file,1);
-                        //close(x->buff_file);
+                        close(x->buff_file);
                         execlp("ls" ,"ls", NULL);
                         //execvp(x->lista[i].result[1], ++(x->lista[i].result));
                         perror("Comando inválido , nao está defenido no sistema");
