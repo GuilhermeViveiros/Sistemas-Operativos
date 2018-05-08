@@ -5,4 +5,6 @@ $ ls
 Agora podemos ordenar estes ficheiros:
 $ ls
 E escolher o primeiro:
-$ ls -l
+$| head -1
+E ordena os elementos:
+$| sort
