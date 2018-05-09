@@ -7,4 +7,3 @@ $ ls
 E escolher o primeiro:
 $| head -1
 E ordena os elementos:
-$| sort

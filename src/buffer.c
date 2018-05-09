@@ -10,10 +10,11 @@ int contador = 0;
 
 //boolean
 int find(Buff x , char *result ,int i , int comando){
-    char *frase = (char *)result;
+    char *frase = malloc(1024);
     int resultado =0;
 
     while(readln(x->lista[i].command_file,frase)>0){
+        printf("%s\n" , frase);
         if (comando == atoi(frase)) {
             resultado = 1;
             break;
@@ -23,13 +24,13 @@ int find(Buff x , char *result ,int i , int comando){
     if (resultado){
         while(readln(x->lista[i].command_file,frase)>0){
             if (atoi(frase) == comando+1) break;
-             printf ("%s\n",result);
+             printf ("%s\n",frase);
         }
     }
 
     printf ("Frase2 :%s\n" , result);
 
-    return resultado; // se tiver o pretendido comando returna 1
+    return resultado; // se tiver o pretendido comando retorna 1
 }
 
 //ssize_t readln(int fildes, void *buf, size_t nbyte);
@@ -120,7 +121,7 @@ void load(Buff x){
                     printf ("Existe comando anterior :%d\n" ,find(x,intput,i,x->lista[i].tmp -1));
                     //Se existir comando anterior entao ele faz -------------
                     //printf ("Comando : %s" ,intput);
-                    if(!fork()){
+                   /* if(!fork()){
                         tmp = x->lista[i].tmp  +  48;
                         write (x->buff_file,&tmp,sizeof(char));
                         //write(x->buff_file,"c",sizeof(char));
@@ -142,7 +143,7 @@ void load(Buff x){
                         perror("Comando inválido , nao está defenido no sistema");
                         _exit(-1);
                     }
-                }/*
+                }
             //caso 3 ----------------------------------------------------------------------------------------------------
                 else {    
                     printf("dasdasdas");  
@@ -172,101 +173,12 @@ void load(Buff x){
                         perror("Comando inválido , nao está defenido no sistema");
                         _exit(-1);
                     }
-                }
                 }*/
                 }
+                }
         }
     }
 }
-
-/*
-void exec_buffer(Buff x,int filedes){
-    int i=0;
-    char *c1 = ">>>>"; char *c2 = "<<<<"; char c = '\n'; 
-    int my_pipe[2];
-    char **result_tmp;
-    pipe(my_pipe);
-
-
-    while(i<x->size){
-        //se for comando
-        if (x->lista[i].check == 1){
-           
-            //se for comando e for do tipo 1 ------------------------------------------------------------
-            if ( strcmp( *(x->lista[i].result) , "$" ) == 0 ){
-                write(filedes,x->lista[i].phrase,strlen(x->lista[i].phrase));
-                write(filedes , &c , 1);
-                if(!fork()){
-                    dup2(filedes,1);
-                    close(filedes);
-                    execvp(x->lista[i].result[1] , ++(x->lista[i].result));
-                    perror("Comando indefenido no sistema!\n");
-                    _exit(-1);
-                }
-                else{
-                    write(filedes , c1 , strlen(c1));
-                    write(filedes , &c , 1);
-                    wait(NULL);
-                    write(filedes , c2 , strlen(c2));
-                    write(filedes , &c , 1);
-                   // _exit(-1);
-                }
-            }
-            
-            //Quero funcao
-            //se for comando e for do tipo 2 ------------------------------------------------------------
-             if ( strcmp( *(x->lista[i].result) , "$|" ) == 0 ){
-                write(filedes,x->lista[i].phrase,strlen(x->lista[i].phrase));
-                write(filedes , &c , 1);
-                //quando for filho
-                if(!fork()){
-                  close(my_pipe[0]);
-                  dup2(my_pipe[1],1);
-                  close(my_pipe[1]);
-
-                  //encontra o comando da instrucao anterior
-                  //result_tmp = find(x,x->lista[i].tmp -1);
-                  //execvp(*result_tmp , ++(result_tmp));
-                  execlp("ls","ls",NULL);
-                  perror("Comando indefenido no sistema!\n");
-                  _exit(-1);
-
-                }
-                    else {
-                            if(!fork()){
-                                close(my_pipe[1]);
-                                dup2(my_pipe[0],0);
-                                close(my_pipe[0]);
-                                dup2(filedes,1);
-                                //close(filedes);
-                                execvp(x->lista[i].result[1] , ++(x->lista[i].result));
-                                perror("Comando indefenido no sistema!\n");
-                                _exit(-1);
-                            }
-                            else {
-                                write(filedes , c1 , strlen(c1));
-                                wait(NULL);
-                                write(filedes,&c,1);
-                                write(filedes , c2 , strlen(c2));
-                                write(filedes,&c,1);
-                            }
-                        //close(filedes);
-                        perror("Comando indefenido no sistema!\n");
-                       
-                    }
-            }
-            //se for comando e for do tipo 3 ------------------------------------------------------------
-        }
-
-        else{
-            write(filedes , x->lista[i].phrase , strlen(x->lista[i].phrase));
-            write (filedes , &c ,1);
-        }
-        i++;
-
-    }
-}
-*/
 
 //void remove_buffer(Buffer x);
 
