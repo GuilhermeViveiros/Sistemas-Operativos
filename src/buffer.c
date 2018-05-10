@@ -50,7 +50,9 @@ static int find (Buff x , struct blocos b , int n ){
     int i;
 
     for(i=0; i<x->size ; i++){
-        if (x->block[i].numberC == b.numberC - n) return i;
+        if (x->block[i].checkC){
+            if (x->block[i].numberC == b.numberC - n) return i;
+            }
     }
     return -1;
 }
