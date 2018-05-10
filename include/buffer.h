@@ -11,44 +11,64 @@
 #include <sys/wait.h>
 
 
-struct ligada{
-    //1 se for comando , 0 se nao for
-    int check;
-    //ordem do comando (ordenado por ordem crescente)
-    int tmp;  
-    char *phrase;
-    //este file serve para quando for um comando to tipo $x| voltarmos ao inicio do ficheiro e recolhermos o intput
-    int command_file;
-    //lista de palavras da frase
-    char **result;
-};
+typedef int (*Filter)( void * ,void *) ;
+/*
+    Filter function.
+*/
+typedef int (*Fcomparator)( void * ,void *) ;
+/*
+    Compare function.
+*/
+typedef void (*Ffree)( void *) ;
+/*
+    Free function.
+*/
 
-// ideia é receber um int filedes e um Tamanho e este preenche se automaticamente!
-typedef struct buff{
-    //wc -l -> diz quantas linhas tem o ficheiro
-    int size; // ja recebemos o size
-    int filedes; //file que o buff vai escrever
-    int buff_file; // file que o buff guarda os resultados
-    struct ligada *lista;    
-}*Buff;
+/**
+*Estrutura de um bloco auxiliar ao Buff 
+*/
+struct blocos;
 
+/**
+*Estrutura de um buff nomeada Buff
+*/
+typedef struct buff *Buff;
 
-//le do fildes para o buf
+//-------------------------------------------------------------------------------------------------
+
+//Le de um ficheiro para um buffer
 int readln(int fildes, void *buf );
 
-//encontra o resultado de um comando , devolve um boolean
-int find(Buff x , char *result ,int i, int comando);
-
-//executa os comandos para o file do buffer
-void load(Buff x);
-
-//executa o buffer para os comandos com $
-void exec_buffer(Buff x,int filedes);
-
-//remove um buffer
-//void rm_buffer(Buff x)
-
-//inicializa o buffer
+//Inicializa o buffer
 Buff create_buffer(int filedes , int size);
+
+//Começa a prencher os blocos do buffer a partir do ficheiro
+Buff load_buffer(Buff x);
+
+
+//Getters//--------------------------------------------------------------------------------------------------
+
+int getSize(Buff x);//devolve o tamanho do buff
+
+int getIs_on(Buff x);//verifica se o buff está ativado ou nao
+
+int getFile(Buff x);//devolve a file que o buff está a usar
+
+int getCheck(Buff x , int i);//verifica se é comando
+
+int getNumberC(Buff x , int i);//devolve o numero do comando
+
+char *getLine(Buff x , int i);//devolve a frase
+
+char **getWords(Buff x , int i);//devolve as palavras de uma frase
+
+char *getResult(Buff x, int i);//devolve o resultado do comando
+
+//Setters//--------------------------------------------------------------------------------------------------
+void setSize(Buff x , int y);//define o tamanho do buffer
+
+void setFile(Buff x,int filedes);//define a file do buffer
+
+void *setResult(Buff x, char *r , int i);//define o resultado de um comando
 
 #endif  

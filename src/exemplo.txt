@@ -1,9 +1,14 @@
 Irá conter varios textes feitos 
 Ex1 :
 Este comando lista os ficheiros:
-$ ls
+$ ps
 Agora podemos ordenar estes ficheiros:
 $ ls
 E escolher o primeiro:
-$| head -1
+$| head 
 E ordena os elementos:
+$ ls -l
+E escolhe o primeiro do ls!
+$3| head -1
+Também escolhe o primeiro do ls -l!
+$2| head -1

@@ -1,0 +1,63 @@
+Irá conter varios textes feitos 
+Ex1 :
+Este comando lista os ficheiros:
+>>>
+$ ps
+  PID TTY           TIME CMD
+ 9440 ttys000    0:00.66 /bin/bash -l
+45197 ttys000    0:00.00 ./program
+12282 ttys001    0:03.83 -bash
+25250 ttys002    0:00.01 /bin/bash -l
+40279 ttys003    0:00.05 -bash
+40323 ttys004    0:00.01 -bash
+<<<
+Agora podemos ordenar estes ficheiros:
+>>>
+$ ls
+Makefile
+buffer.c
+execut.c
+exemplo.txt
+main.c
+nootbook.txt
+obj
+program
+testes.txt
+<<<
+E escolher o primeiro:
+>>>
+$| head 
+Makefile
+buffer.c
+execut.c
+exemplo.txt
+main.c
+nootbook.txt
+obj
+program
+testes.txt
+<<<
+E ordena os elementos:
+>>>
+$ ls -l
+total 88
+-rw-r--r--@ 1 guilhermeviveiros  staff    531  9 Mai 23:47 Makefile
+-rw-r--r--  1 guilhermeviveiros  staff   6564 10 Mai 13:16 buffer.c
+-rw-r--r--@ 1 guilhermeviveiros  staff   1744 10 Mai 11:42 execut.c
+-rw-r--r--  1 guilhermeviveiros  staff    273 10 Mai 13:03 exemplo.txt
+-rw-r--r--@ 1 guilhermeviveiros  staff   1452 10 Mai 13:35 main.c
+-rw-r--r--  1 guilhermeviveiros  staff      0 10 Mai 13:35 nootbook.txt
+drwxr-xr-x  5 guilhermeviveiros  staff    170 10 Mai 13:35 obj
+-rwxr-xr-x  1 guilhermeviveiros  staff  16044 10 Mai 13:35 program
+-rw-r--r--  1 guilhermeviveiros  staff    168  9 Mai 23:47 testes.txt
+<<<
+E escolhe o primeiro do ls!
+>>>
+$3| head -1
+Makefile
+<<<
+Também escolhe o primeiro do ls -l!
+>>>
+$2| head -1
+total 88
+<<<

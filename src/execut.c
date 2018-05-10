@@ -2,10 +2,19 @@
 #include "buffer.h"
 
 
+//-------------------------------------------------------------------------------------
+    // Da autoria de Guilherme Viveiros && Angelo Sousa && Mateus Silva.
+//-------------------------------------------------------------------------------------
+
+//defines
 #define Max 10
 
-//Recebe como argumentos uma frase e separa-a em várias palavras
-char** mysystem (char *command) {
+// Métodos publicos
+char** mysystem (char *command);
+int checkCommand (char* frase);
+
+//--------------------------------------------------------------------------------------------------
+char** mysystem (char *command){
 
     int i=0, x=0;
     char tmp[1024];
@@ -45,7 +54,7 @@ char** mysystem (char *command) {
 }
 
 
-int checkCommand (char* frase){
+int checkCommand(char* frase){
     while(*frase){
         if (*frase++=='$')
             return 1;
