@@ -17,9 +17,9 @@ print-% : ; @echo $* = $($*)
 $(ODIR)/%.o : %.c $(DEPS)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-program: $(SOURCES_OBJ) $(MY_LIBS_OBJ)
-	$(CC) $(CFLAGS) $(wildcard $(ODIR)/*.o)  $(wildcard $(OLDIR)/*.o) -o program $(LIBS)
+notebook: $(SOURCES_OBJ) $(MY_LIBS_OBJ)
+	$(CC) $(CFLAGS) $(wildcard $(ODIR)/*.o)  $(wildcard $(OLDIR)/*.o) -o notebook $(LIBS)
 
 clean:
 	rm obj/*.o
-	rm program
+	rm notebook

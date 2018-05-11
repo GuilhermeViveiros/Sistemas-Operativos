@@ -1,0 +1,51 @@
+Irá conter varios textes feitos 
+Ex1 :
+Este comando lista os ficheiros:
+$ ps -l
+>>>
+  UID   PID  PPID        F CPU PRI NI       SZ    RSS WCHAN     S             ADDR TTY           TIME CMD
+  501 69416 69415     4006   0  31  0  2461044   1632 -      S+                  0 ttys000    0:00.34 -bash
+  501 70046 69416     4006   0  31  0  2432792    748 -      T                   0 ttys000    0:00.00 cat
+  501 70047 69416     4006   0  31  0  2432788    648 -      T                   0 ttys000    0:00.00 head -1
+  501 52996 52995     4006   0  31  0  2461044    936 -      Ss                  0 ttys001    0:00.33 /bin/bash -l
+  501 70329 52996     4006   0  31  0  2432788    656 -      S+                  0 ttys001    0:00.00 ./notebook exemplo.txt
+<<<
+Ordena
+$|             head 
+>>>
+  UID   PID  PPID        F CPU PRI NI       SZ    RSS WCHAN     S             ADDR TTY           TIME CMD
+  501 69416 69415     4006   0  31  0  2461044   1632 -      S+                  0 ttys000    0:00.34 -bash
+  501 70046 69416     4006   0  31  0  2432792    748 -      T                   0 ttys000    0:00.00 cat
+  501 70047 69416     4006   0  31  0  2432788    648 -      T                   0 ttys000    0:00.00 head -1
+  501 52996 52995     4006   0  31  0  2461044    936 -      Ss                  0 ttys001    0:00.33 /bin/bash -l
+  501 70329 52996     4006   0  31  0  2432788    656 -      S+                  0 ttys001    0:00.00 ./notebook exemplo.txt
+<<<
+Agora podemos ordenar estes ficheiros:
+$ ps
+>>>
+  PID TTY           TIME CMD
+69416 ttys000    0:00.34 -bash
+70046 ttys000    0:00.00 cat
+70047 ttys000    0:00.00 head -1
+52996 ttys001    0:00.33 /bin/bash -l
+70329 ttys001    0:00.01 ./notebook exemplo.txt
+<<<
+E escolher o primeiro:
+$1| cat
+>>>
+  PID TTY           TIME CMD
+69416 ttys000    0:00.34 -bash
+70046 ttys000    0:00.00 cat
+70047 ttys000    0:00.00 head -1
+52996 ttys001    0:00.33 /bin/bash -l
+70329 ttys001    0:00.01 ./notebook exemplo.txt
+<<<
+E ordena os elementos:
+$1| head -1
+>>>
+  PID TTY           TIME CMD
+<<<
+Também escolhe o primeiro do ls -l!
+$9| wc -l
+>>>
+<<<

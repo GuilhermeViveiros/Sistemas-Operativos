@@ -1,5 +1,5 @@
 #include "buffer.h"
-#include "execut.h"
+#include "auxF.h"
 
 //-------------------------------------------------------------------------------------
     // Da autoria de Guilherme Viveiros && Angelo Sousa && Mateus Silva.
@@ -37,6 +37,7 @@ static struct blocos case2(Buff x,struct blocos b,int c);
 int readln(int fildes,void *buff);
 Buff create_buffer(int filedes,int size);
 Buff load_buffer(Buff x);
+void destroy_buffer(Buff x);
 
 //Variavel externa
 int contador = 0;
@@ -66,11 +67,15 @@ static int find (Buff x , struct blocos b , int n ){
 
 //Tipo 1
 static struct blocos case1(struct blocos x){
-    int my_pipe[2];
+    int my_pipe[2],p;
 
     pipe(my_pipe);
-
-    if(!fork()){
+    p = fork();
+    if(p == -1) {
+        perror("Sistema nao consege criar mais processos!\n");
+        _exit(-1);
+    }
+    if(!p){
         close(my_pipe[0]);
         dup2(my_pipe[1],1);
         close(my_pipe[1]);
@@ -88,7 +93,7 @@ static struct blocos case1(struct blocos x){
 
 //Tipo 2 / 3
 static struct blocos case2(Buff x,struct blocos b, int c){
-    int i,ant[2],act[2];
+    int i,ant[2],act[2],p;
     pipe(ant);
     pipe(act);
   
@@ -99,11 +104,13 @@ static struct blocos case2(Buff x,struct blocos b, int c){
         i = find(x,b,c);
     }
 
-    printf("Meu comando :%d , %s \n" , b.numberC ,   b.line);
-    printf("Comando a ser procurado -> %d\n" ,  x->block[i].numberC);
-    printf("Comando = %s\n", x->block[i].line);
     if (i != -1) {
-        if (fork()){
+        p = fork();
+        if(p == -1) {
+            perror("Sistema nao consege criar mais processos!\n");
+            _exit(-1);
+        }
+        if (p){
             close(ant[0]);//fecha o pipe 0 que representa o comando anterior
             write(ant[1] , x->block[i].result , 1024);//escreve no pipe 1 que repsenta o resultado do comando anterior
             close(ant[1]);//fecha o pipe 1 que representa o comando anterior
@@ -160,12 +167,10 @@ int i;
                 else{ 
                     if(!strcmp (x->block[i].words[0] , "$|")){
                         x->block[i] = case2(x,x->block[i],-1);
-                        printf("%s\n" , x->block[i].result);
                     }
                     else{
                         //o atoi representa o número que está entre o comando , ex :$2|
                         x->block[i] = case2(x,x->block[i], atoi(++x->block[i].words[0]) );
-                        printf("%s\n" , x->block[i].result);
                     }
                 }
         }
@@ -175,6 +180,17 @@ int i;
             }
     }
     return x;
+}
+
+void destroy_buffer(Buff x){
+    int i=0;
+    for(i=0;i<x->size;i++){
+        free(x->block[i].result);
+        free(x->block[i].line);
+        free(x->block[i].words);
+    }
+    free(x->block);
+    free(x);
 }
 
 

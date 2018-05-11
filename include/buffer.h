@@ -45,6 +45,8 @@ Buff create_buffer(int filedes , int size);
 //Começa a prencher os blocos do buffer a partir do ficheiro
 Buff load_buffer(Buff x);
 
+//Destroi o buffer
+void destroy_buffer(Buff x);
 
 //Getters//--------------------------------------------------------------------------------------------------
 

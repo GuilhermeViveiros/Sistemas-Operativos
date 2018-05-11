@@ -1,5 +1,5 @@
-#ifndef execut_h
-#define execut_h
+#ifndef auxF_h
+#define auxF_h
 
 #include "buffer.h"
 #include <string.h>

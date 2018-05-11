@@ -1,4 +1,4 @@
-#include "execut.h"
+#include "auxF.h"
 #include "buffer.h"
 
 
@@ -48,8 +48,6 @@ char** mysystem (char *command){
             }  
         }
     argumentos[x] = NULL;
-    //execvp("./Ex6" , argumentos);
-   // perror ("Ex6 not found!\n");
     return argumentos;   
 }
 

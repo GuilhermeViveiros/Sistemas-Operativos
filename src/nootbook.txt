@@ -1,25 +1,35 @@
 Irá conter varios textes feitos 
 Ex1 :
 Este comando lista os ficheiros:
+$ ls
 >>>
-$ ps -l
-  UID   PID  PPID        F CPU PRI NI       SZ    RSS WCHAN     S             ADDR TTY           TIME CMD
-  501  9440  9439     4086   0  31  0  2461044   1500 -      Ss                  0 ttys000    0:00.68 /bin/bash -l
-  501 45489  9440     4006   0  31  0  2432784    664 -      S+                  0 ttys000    0:00.00 ./program
-  501 12282 12281     4086   0  31  0  2461044   1432 -      S+                  0 ttys001    0:03.83 -bash
-  501 25250 25249     4006   0  31  0  2451828    860 -      Ss+                 0 ttys002    0:00.01 /bin/bash -l
-  501 40279 40278     4006   0  31  0  2461044   1604 -      S+                  0 ttys003    0:00.05 -bash
-  501 40323 40322     4006   0  31  0  2461044   1592 -      S+                  0 ttys004    0:00.05 -bash
+Makefile
+auxF.c
+buffer.c
+exemplo.txt
+main.c
+nootbook.txt
+obj
+program
+<<<
+Ordena
+$| ls
+>>>
+Makefile
+auxF.c
+buffer.c
+exemplo.txt
+main.c
+nootbook.txt
+obj
+program
 <<<
 Agora podemos ordenar estes ficheiros:
+$| cat
 >>>
-$ ls -a
-.
-..
-.DS_Store
 Makefile
+auxF.c
 buffer.c
-execut.c
 exemplo.txt
 main.c
 nootbook.txt
@@ -27,35 +37,36 @@ obj
 program
 <<<
 E escolher o primeiro:
->>>
 $2| head 
-  UID   PID  PPID        F CPU PRI NI       SZ    RSS WCHAN     S             ADDR TTY           TIME CMD
-  501  9440  9439     4086   0  31  0  2461044   1500 -      Ss                  0 ttys000    0:00.68 /bin/bash -l
-  501 45489  9440     4006   0  31  0  2432784    664 -      S+                  0 ttys000    0:00.00 ./program
-  501 12282 12281     4086   0  31  0  2461044   1432 -      S+                  0 ttys001    0:03.83 -bash
-  501 25250 25249     4006   0  31  0  2451828    860 -      Ss+                 0 ttys002    0:00.01 /bin/bash -l
-  501 40279 40278     4006   0  31  0  2461044   1604 -      S+                  0 ttys003    0:00.05 -bash
-  501 40323 40322     4006   0  31  0  2461044   1592 -      S+                  0 ttys004    0:00.05 -bash
+>>>
+Makefile
+auxF.c
+buffer.c
+exemplo.txt
+main.c
+nootbook.txt
+obj
+program
 <<<
 E ordena os elementos:
->>>
 $1| head -1
-  UID   PID  PPID        F CPU PRI NI       SZ    RSS WCHAN     S             ADDR TTY           TIME CMD
+>>>
+Makefile
 <<<
 Também escolhe o primeiro do ls -l!
->>>
 $| ps
-  PID TTY           TIME CMD
- 9440 ttys000    0:00.68 /bin/bash -l
-45489 ttys000    0:00.01 ./program
-12282 ttys001    0:03.83 -bash
-25250 ttys002    0:00.01 /bin/bash -l
-40279 ttys003    0:00.05 -bash
-40323 ttys004    0:00.05 -bash
-<<<
 >>>
+  PID TTY           TIME CMD
+ 9440 ttys000    0:00.83 /bin/bash -l
+48976 ttys000    0:00.01 ./program exemplo.txt
+<<<
 $4| head -3
-.
-..
-.DS_Store
+>>>
+Makefile
+auxF.c
+buffer.c
+<<<
+$2| wc -l
+>>>
+       3
 <<<
