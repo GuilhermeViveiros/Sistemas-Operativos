@@ -1,5 +1,6 @@
 #include "buffer.h"
 #include "auxF.h"
+#include "Cextra.h"
 
 //-------------------------------------------------------------------------------------
     // Da autoria de Guilherme Viveiros && Angelo Sousa && Mateus Silva.
@@ -21,6 +22,7 @@ struct blocos{
 
 typedef struct buff{
     int size; //quantidade de blocos
+    int used; //blocos usados;
     int is_ON; //verifica se o Buff está on
     int file; //file que o buff vai receber
     struct blocos *block;
@@ -31,12 +33,12 @@ typedef struct buff{
 static int find (Buff x , struct blocos y , int n );
 static struct blocos case1(struct blocos x);
 static struct blocos case2(Buff x,struct blocos b,int c);
-
+static struct blocos specialC(struct blocos x , char c);
 
 // Métodos publicos
 int readln(int fildes,void *buff);
-Buff create_buffer(int filedes,int size);
-Buff load_buffer(Buff x);
+Buff create_buffer(int filedes);
+Buff load_buffer(Buff x,char *y);
 void destroy_buffer(Buff x);
 
 //Variavel externa
@@ -134,51 +136,100 @@ static struct blocos case2(Buff x,struct blocos b, int c){
     return b;
 }
 
+static struct blocos specialC(struct blocos x , char c){
+char *aux   =malloc(1024); 
+char *tmp1 = malloc(1024);
+char *tmp2 = malloc(1024);
+        switch (c){
+            case '|' :
+                x.result = concurrent_execution(x.line);
+                break;
+            case '>' :
+                strcpy(aux,x.line);
+                tmp1 = strstr(x.line,">"); // da me a resultade palavra a partir do > +1 
+                tmp2 = strtok(aux,">"); //da me a resultante até ao >
+                redir(NULL,tmp1,tmp2);
+                break;
+            case '<' :
+                strcpy(aux,x.line);
+                tmp1 = strstr(x.line,"<"); // da me a resultade palavra a partir do < +1 
+                tmp2 = strtok(aux,"<"); //da me a resultante até ao <
+                redir(tmp1,NULL,tmp2); // FAZERRRR MELHOR
+                break;
+            case '1' : //representa >>
+                strcpy(aux,x.line);
+                tmp1 = strstr(x.line,">>"); // da me a resultade palavra a partir do >> +1 
+                tmp2 = strtok(aux,">>"); //da me a resultante até ao >>
+                redir_end(tmp1,tmp2);
+                break;
+            default: break;
+        }
+    return x;
+}
 //---------------------------------------------------------------------------------------------------------
-Buff create_buffer(int filedes , int size){
-    Buff x;
+Buff create_buffer(int filedes){
+    Buff x = malloc(sizeof (struct buff));
+    char *phrase = malloc(1024);
 
-    x = malloc(sizeof (struct buff));
-    x->size = size;
+    x->size = 1;
+    x->used = 0;
+    x->block = malloc(sizeof(struct blocos));
     x->is_ON = True;
     x->file = filedes;
-    x->block = malloc(sizeof(struct blocos) *size);
-
+    
+    while(readln(x->file,phrase)>0){
+        x = load_buffer(x,phrase);
+    }
     return x;
 }
 
-Buff load_buffer(Buff x){
-int i;
-    
-    for(i=0; i < x->size ; i++){
+Buff load_buffer(Buff x,char *y){//growing array
+char c;
 
-        x->block[i].line = malloc(1024);
-        readln(x->file , x->block[i].line);
+float taxa_ocupacao = (float) x->used/x->size;
 
-        if (checkCommand(x->block[i].line)) {
-            x->block[i].checkC = True;
-    	    x->block[i].numberC = contador++;
-    	    x->block[i].words = mysystem(x->block[i].line);
-            x->block[i].result = malloc(1024);
-            //quando for comando tipo 2 ou 3
-            if(!strcmp (x->block[i].words[0] , "$")){
-               x->block[i] = case1(x->block[i]);
+        //quando for igual a 0 é só para o primeiro caso
+        if (taxa_ocupacao > 0.8 || taxa_ocupacao == 0){
+            x->block = realloc ( x->block, x->size*2*(sizeof (struct blocos)));
+            x->size*=2;
+        }
+
+        x->block[x->used].line = malloc(1024);
+        strcpy(x->block[x->used].line,y);
+        
+        if (checkCommand(x->block[x->used].line)) {   
+            x->block[x->used].checkC = True;
+    	    x->block[x->used].numberC = contador++;
+    	    x->block[x->used].words = mysystem(x->block[x->used].line);
+            x->block[x->used].result = malloc(1024);
+            //quando for comando tipo 1
+            if(!strcmp (x->block[x->used].words[0] , "$")){
+
+                if((c=verifica(x->block[x->used].line)) != '0' ){ //quando ocorrer comando especial
+                //ls | cat && ls & cat && ls > cat && ls < cat
+                    x->block[x->used] = specialC(x->block[x->used] , c);
+                }
+                    else {
+                        x->block[x->used] = case1(x->block[x->used]);
+                    }
+
             }
                 else{ 
-                    if(!strcmp (x->block[i].words[0] , "$|")){
-                        x->block[i] = case2(x,x->block[i],-1);
+                    if(!strcmp (x->block[x->used].words[0] , "$|")){
+                          x->block[x->used] = case2(x,x->block[x->used],1);
                     }
                     else{
                         //o atoi representa o número que está entre o comando , ex :$2|
-                        x->block[i] = case2(x,x->block[i], atoi(++x->block[i].words[0]) );
+                        x->block[x->used] = case2(x,x->block[x->used], atoi(++x->block[x->used].words[0]) );
                     }
                 }
         }
             else {
-                 x->block[i].checkC = False;
-                 x->block[i].words = mysystem(x->block[i].line);
+                 x->block[x->used].checkC = False;
+                x->block[x->used].words = mysystem(x->block[x->used].line);
             }
-    }
+          
+    x->used++;
     return x;
 }
 
@@ -211,10 +262,27 @@ int readln(int fildes, void *buff ) {
  	*st = '\0';
  	return x;
 }
+/* FUNCAO DESTINADA PARA SABER O EOF -> PERGUNTAR AO STOR
+int read_file(int fildes, void*buff){
+    int x=0; char c;
+	char *st = (char *)buff;
+
+	while ( read (fildes , &c , 1) > 0 ) {
+		if ( c == EOF) break; //quando encontrar paragrafo acaba
+			*st = c;
+			st++;
+			x++;
+	}
+ 	*st = '\0';
+ 	return x;
+}
+*/
 
 
 //Getters//--------------------------------------------------------------------------------------------------
 int getSize(Buff x){return x->size;}
+
+int getUsed(Buff x){return x->used;}
 
 int getIs_on(Buff x){return x->is_ON;}
 
@@ -236,3 +304,4 @@ void setSize(Buff x , int y){x->size = y;}
 void setFile(Buff x,int filedes){x->file = filedes;}
 
 void *setResult(Buff x, char *r , int i){ strcpy(x->block[i].result ,r); _exit(-1);} //poque dá erro sem o exit???
+

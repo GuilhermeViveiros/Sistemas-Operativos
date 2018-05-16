@@ -39,18 +39,22 @@ typedef struct buff *Buff;
 //Le de um ficheiro para um buffer
 int readln(int fildes, void *buf );
 
+int read_file(int fildes, void*buff);
+
 //Inicializa o buffer
-Buff create_buffer(int filedes , int size);
+Buff create_buffer(int filedes);
 
 //Começa a prencher os blocos do buffer a partir do ficheiro
-Buff load_buffer(Buff x);
+Buff load_buffer(Buff x,char *y);
 
 //Destroi o buffer
 void destroy_buffer(Buff x);
 
 //Getters//--------------------------------------------------------------------------------------------------
 
-int getSize(Buff x);//devolve o tamanho do buff
+int getSize(Buff x);//devolve o tamanho do buff , blocos que ele tem
+
+int getUsed(Buff x);//devolve a quantidade de blocos usados
 
 int getIs_on(Buff x);//verifica se o buff está ativado ou nao
 
