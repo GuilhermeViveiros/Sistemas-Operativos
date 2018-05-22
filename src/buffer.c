@@ -26,7 +26,7 @@ typedef struct buff{
     int is_ON; //verifica se o Buff está on
     int file; //file que o buff vai receber
     struct blocos *block;
-}*Buff;
+} * Buff;
 
 
 // Métodos privados
@@ -142,25 +142,26 @@ char *tmp1 = malloc(1024);
 char *tmp2 = malloc(1024);
         switch (c){
             case '|' :
-                x.result = concurrent_execution(x.line);
+                x.result = paraleloSC(x.line,NULL);
                 break;
             case '>' :
                 strcpy(aux,x.line);
                 tmp1 = strstr(x.line,">"); // da me a resultade palavra a partir do > +1 
                 tmp2 = strtok(aux,">"); //da me a resultante até ao >
-                redir(NULL,tmp1,tmp2);
+                tmp1++;tmp1++; //estou a saltar os caracteres desnessesarios
+                redir(NULL,tmp1,tmp2,NULL);
                 break;
             case '<' :
                 strcpy(aux,x.line);
                 tmp1 = strstr(x.line,"<"); // da me a resultade palavra a partir do < +1 
                 tmp2 = strtok(aux,"<"); //da me a resultante até ao <
-                redir(tmp1,NULL,tmp2); // FAZERRRR MELHOR
+                x.result = redir(tmp1,NULL,tmp2,NULL); // FAZERRRR MELHOR
                 break;
             case '1' : //representa >>
                 strcpy(aux,x.line);
                 tmp1 = strstr(x.line,">>"); // da me a resultade palavra a partir do >> +1 
                 tmp2 = strtok(aux,">>"); //da me a resultante até ao >>
-                redir_end(tmp1,tmp2);
+                redir_end(tmp1,tmp2,NULL);
                 break;
             default: break;
         }
@@ -177,16 +178,18 @@ Buff create_buffer(int filedes){
     x->is_ON = True;
     x->file = filedes;
     
-    while(readln(x->file,phrase)>0){
+    //porque nao funciona com EOF -> MUDAR PARA -1 E VERIFICAR PORQUE NAO FUNCIONA
+    while(readln(x->file,phrase) > 0){
+        //se for 0 quer dizer que encontrou um paragrafo , avancamos uma linha
         x = load_buffer(x,phrase);
     }
+    free(phrase);
     return x;
 }
 
 Buff load_buffer(Buff x,char *y){//growing array
-char c;
-
-float taxa_ocupacao = (float) x->used/x->size;
+    char c;
+    float taxa_ocupacao = (float) x->used/x->size;
 
         //quando for igual a 0 é só para o primeiro caso
         if (taxa_ocupacao > 0.8 || taxa_ocupacao == 0){
@@ -201,6 +204,7 @@ float taxa_ocupacao = (float) x->used/x->size;
             x->block[x->used].checkC = True;
     	    x->block[x->used].numberC = contador++;
     	    x->block[x->used].words = mysystem(x->block[x->used].line);
+            free(mysystem(x->block[x->used].line));
             x->block[x->used].result = malloc(1024);
             //quando for comando tipo 1
             if(!strcmp (x->block[x->used].words[0] , "$")){
@@ -243,41 +247,6 @@ void destroy_buffer(Buff x){
     free(x->block);
     free(x);
 }
-
-
-/**
- * Le de uma ficheiro para um buff
- * Para quando encontrar um '\n'
- * */
-int readln(int fildes, void *buff ) {
-	int x=0; char c;
-	char *st = (char *)buff;
-
-	while ( read (fildes , &c , 1) > 0 ) {
-		if ( c == '\n') break; //quando encontrar paragrafo acaba
-			*st = c;
-			st++;
-			x++;
-	}
- 	*st = '\0';
- 	return x;
-}
-/* FUNCAO DESTINADA PARA SABER O EOF -> PERGUNTAR AO STOR
-int read_file(int fildes, void*buff){
-    int x=0; char c;
-	char *st = (char *)buff;
-
-	while ( read (fildes , &c , 1) > 0 ) {
-		if ( c == EOF) break; //quando encontrar paragrafo acaba
-			*st = c;
-			st++;
-			x++;
-	}
- 	*st = '\0';
- 	return x;
-}
-*/
-
 
 //Getters//--------------------------------------------------------------------------------------------------
 int getSize(Buff x){return x->size;}

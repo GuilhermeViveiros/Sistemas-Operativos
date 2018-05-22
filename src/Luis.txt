@@ -1,0 +1,12 @@
+Cextra.c
+Luis.txt
+Makefile
+Notebook.txt
+auxF.c
+buffer.c
+cat
+exemplo.txt
+main.c
+notebook
+notebook.dSYM
+obj

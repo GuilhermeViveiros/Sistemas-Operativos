@@ -58,8 +58,7 @@ int main(int argc , char *argv[]){
     }
     */
      //NAO SEI SE ESTA FUNCAO ESTA DIREITA(NAO ESTA , MODIFICAR)
-    //destroy_buffer(x); //destroi um dterminado buffer 
- 
+   //destroy_buffer(x); //destroi um dterminado buffer 
    
     return 0;
 }

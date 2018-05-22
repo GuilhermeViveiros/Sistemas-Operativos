@@ -1,0 +1,80 @@
+$ ls
+>>>
+Cextra.c
+Luis.txt
+Makefile
+Notebook.txt
+auxF.c
+buffer.c
+cat
+exemplo.txt
+main.c
+notebook
+notebook.dSYM
+obj
+<<<
+Agora podemos ordenar estes ficheiros:
+$| sort 
+>>>
+<<<
+E escolher o primeiro:
+$2| head -5
+>>>
+Cextra.c
+Luis.txt
+Makefile
+Notebook.txt
+auxF.c
+<<<
+Tail do anterior
+$| tail -2
+>>>
+auxF.c
+<<<
+Grep do ls
+$4| grep notebook
+>>>
+Binary file (standard input) matches
+<<<
+$ ls > Luis.txt
+>>>
+<<<
+$ ps
+>>>
+  PID TTY           TIME CMD
+ 2275 ttys000    0:01.03 /bin/bash -l
+ 2438 ttys001    0:00.09 /bin/bash -l
+22891 ttys001    0:00.00 ./notebook exemplo.txt
+22897 ttys001    0:00.00 (ls)
+22460 ttys002    0:00.02 -bash
+<<<
+$ cat < Luis.txt
+>>>
+Cextra.c
+Luis.txt
+Makefile
+Notebook.txt
+auxF.c
+buffer.c
+cat
+exemplo.txt
+main.c
+notebook
+notebook.dSYM
+obj
+<<<
+$ cat Luis.txt
+>>>
+Cextra.c
+Luis.txt
+Makefile
+Notebook.txt
+auxF.c
+buffer.c
+cat
+exemplo.txt
+main.c
+notebook
+notebook.dSYM
+obj
+<<<

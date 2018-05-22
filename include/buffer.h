@@ -34,13 +34,7 @@ struct blocos;
 */
 typedef struct buff *Buff;
 
-//-------------------------------------------------------------------------------------------------
-
-//Le de um ficheiro para um buffer
-int readln(int fildes, void *buf );
-
-int read_file(int fildes, void*buff);
-
+//---------------------------------------------------------------------------------------------------------
 //Inicializa o buffer
 Buff create_buffer(int filedes);
 

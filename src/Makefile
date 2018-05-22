@@ -3,7 +3,7 @@ ODIR=obj
 
 
 CC=gcc
-CFLAGS = -Wall -std=c11 -g -Ofast   -I$(IDIR)
+CFLAGS = -Wall -g -Og -std=gnu99 -Ofast   -I$(IDIR)
 
 DEPS=$(IDIR)/$(wildcard *.h)
 SOURCES=$(wildcard *.c)
