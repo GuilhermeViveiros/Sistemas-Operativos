@@ -27,6 +27,7 @@ $ ls | head -1 & ls > cat
 -> Mudar todos os comandos que dao erro para um fichero de error com a funçao redir end
 -> Mofificar o readln para ler ate o EOF em vez de ler até o '\n'
 -> Fazer o && também 
+-> Tirar o is_ON
 -> Fazer os exercisios do  paralelo urgente
 -> Modificar o destroy buffer pois ta errado
 -> Acabar de fazer o specialCommand (Faz todos os comandos) 

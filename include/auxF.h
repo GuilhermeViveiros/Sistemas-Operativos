@@ -17,7 +17,10 @@ int checkCommand(char* frase);
 //Le de um ficheiro para um buffer até encontrar '\n'
 int readln(int fildes, void *buf );
 
-//Le de um ficheiro para um buffer até encontrar o EOF
+
+/**
+ * Dado um dado ficheiro , guarda me tudo diretamente num buffer
+ * */// -> estou a usar na concorrentesSC
 int readall(int fildes, void *buff );
 
-#endif /* execut */
+#endif /* aux */

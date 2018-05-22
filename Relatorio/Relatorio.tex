@@ -1,0 +1,131 @@
+\documentclass{article}
+
+%Package para caracteres especiais
+%\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+%Equacoes matematicas
+\usepackage{amsmath}
+
+\usepackage{ragged2e}
+
+%Expoentes (super script) -> \textsuperscript{th}
+%Ficar mais pequeno -> \textsubscript{th}
+
+%Notas-> \footnote bla bla bla
+
+%Para caracteres que o package nao consege associar -> $\backslash$
+
+%Graphics feitos com codigo
+%\usepackage[margin=0.5in]{geometry}
+\usepackage{textcomp}
+
+
+\usepackage{pgfplots}
+
+%Graphics inserindo (ja feitos)
+\usepackage{graphics} %Permite usar imagens
+\usepackage{float} %Permite nos controlar a posicao 
+
+\begin{document}
+
+
+\begin{titlepage}	
+	\begin{center}
+	
+\huge{\bfseries Trabalho Prático \\ Laboratórios de Informática}\\
+[1cm]
+\Huge Grupo 6\\ 
+[0.3cm]
+
+\huge Guilherme Viveiros , Mateus Silva e Angelo André\\
+[12cm]
+
+\end{center}
+
+	\begin{flushright}
+	 	Departamento de Informática\\
+		Universidade do Minho
+				\end{flushright}
+
+	
+\end{titlepage}
+%aqui acaba tudo relacionado com o meu titulo
+
+\tableofcontents %Indice do trabalho
+\thispagestyle{empty} %tira a numeracao da pagina
+\newpage
+\setcounter{page}{1} %Numero da pagina = 1
+
+\section{Motivação:}
+No âmbito da Unidade Curricular  Sistemas Operativos, foi proposto pelo corpo docente a implementação de um processador de notebooks.
+
+Processador de NoteBooks tem como objetivo misturar fragmentos de código, resultados da execução, e documentação. Neste contexto, um notebook é um ficheiro de texto que depois de processado é modificado de modo a incorporar resultados da execução de código ou comandos nele embebidos.\\
+
+POR IMAGEM DEMOSNTRATIVA AQUI
+
+%Fim da section sobre Motivacao
+
+
+\section{Processamento de dados:}
+Os dados são processados através de ficheiros de leitura que são fornecidos.	
+
+\newpage
+\section{Estruturas principais}
+Decidimos que seria uma boa implementacçao usarmos um Buffer com um growing array nele contido
+%Fim da section sobre Estruturas principais
+
+\section{Gestão de memória:}
+
+Para assegurar que não há perdas de memória nas diferentes partes do projeto usamos o software Valgrind\footnote{http://valgrind.org/}, que indica os blocos de memória que foram reservados pela aplicação mas que não contêm nenhuma variável com o endereço desta.\\
+
+
+\newpage
+\section{Implementações:}
+
+Dado a nossa estrutura não foi muito complicado devolver o ficheiro final.
+O array é sequencialmente percorrido ,através dos métodos desponibilizados, ocorrendo uma verificação para ver se é comando ou apenas uma documentação , caso fosse comando   o resultado desse comando (disponibilizado no array)  era escrito num ficheiro , limitado entre o nome do comando , >>>> resultado do comando <<<<.
+
+Caso não fosse comando era copiada a linha do array para o o ficheiro.
+
+ \section{Auxiliares:}
+FALAR NAS FUNCOES USADAS PARA CONSEGUIR EXECUTAR COMANDOS MAIS COMPLEXOS
+
+%Fim das explicação das Interrogacões
+\newpage
+\section{Modularização:}
+Todas as componentes do nosso trabalho, foram criadas em ficheiros fonte separados e com atributos privados, para que fosse impossível aceder a estes sem usar os métodos diretamente associados a cada uma das estruturas de dados criadas.
+
+
+A legibilidade e a flexibilidade do nosso projeto permitiu testar todas os diferentes componentes dos módulos criados sem que fosse necessário alterar as centenas de linhas externas que usufruem destes.
+
+
+\section{Convenções para entradas inválidas:}
+Dado que o utilizador pode usar comandos inválidos ou até parar o programa com CTRL C as convenções para entradas inválidas foram simplesmente parar o programa e devolver o ficheiro recebido intacto.
+
+
+
+
+\newpage
+
+\section{Referências:}
+
+
+[1] - J.W. J. Williams, Algorithm 232: Growing-Array, Communications of the ACM 7 (1964), 347-348.
+
+[2] - R.W. Floyd, Algorithm 245: Treesort 3, Communications of the ACM 7 (1964), 701 NAO ESTOU A USAR AQUI
+
+[3] - D. B. Johnson, Priority queues with update and finding minimum spanning trees, Information Processing Letters 4 (1975), 53-57. NAO ESTOU A USAR AQUI\\
+
+[4] - Willams, Jr., Louis F. , A modification to the half-interval search (binary search) method , Proceedings of the 14th ACM Southeast Conference (1975) , 95-101.NAO ESTOU A USAR AQUI\\
+
+
+
+	
+\end{document}
+
+
+
+
+

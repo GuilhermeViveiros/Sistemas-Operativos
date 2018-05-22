@@ -20,13 +20,13 @@ struct blocos{
     char *result; //contem o resultado do respetivo comando
 };
 
-typedef struct buff{
+struct buff{
     int size; //quantidade de blocos
     int used; //blocos usados;
     int is_ON; //verifica se o Buff está on
     int file; //file que o buff vai receber
     struct blocos *block;
-} * Buff;
+};
 
 
 // Métodos privados
@@ -137,9 +137,9 @@ static struct blocos case2(Buff x,struct blocos b, int c){
 }
 
 static struct blocos specialC(struct blocos x , char c){
-char *aux   =malloc(1024); 
-char *tmp1 = malloc(1024);
-char *tmp2 = malloc(1024);
+    char *aux   =malloc(1024); 
+    char *tmp1 = malloc(1024);
+    char *tmp2 = malloc(1024);
         switch (c){
             case '|' :
                 x.result = paraleloSC(x.line,NULL);
@@ -204,7 +204,7 @@ Buff load_buffer(Buff x,char *y){//growing array
             x->block[x->used].checkC = True;
     	    x->block[x->used].numberC = contador++;
     	    x->block[x->used].words = mysystem(x->block[x->used].line);
-            free(mysystem(x->block[x->used].line));
+            //free(mysystem(x->block[x->used].line));
             x->block[x->used].result = malloc(1024);
             //quando for comando tipo 1
             if(!strcmp (x->block[x->used].words[0] , "$")){
@@ -230,7 +230,7 @@ Buff load_buffer(Buff x,char *y){//growing array
         }
             else {
                  x->block[x->used].checkC = False;
-                x->block[x->used].words = mysystem(x->block[x->used].line);
+                //x->block[x->used].words = mysystem(x->block[x->used].line);
             }
           
     x->used++;
@@ -272,5 +272,5 @@ void setSize(Buff x , int y){x->size = y;}
 
 void setFile(Buff x,int filedes){x->file = filedes;}
 
-void *setResult(Buff x, char *r , int i){ strcpy(x->block[i].result ,r); _exit(-1);} //poque dá erro sem o exit???
+void *setResult(Buff x, char *r , int i){ strcpy(x->block[i].result ,r); _exit(-1);}
 

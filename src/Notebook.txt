@@ -6,7 +6,6 @@ Makefile
 Notebook.txt
 auxF.c
 buffer.c
-cat
 exemplo.txt
 main.c
 notebook
@@ -42,11 +41,11 @@ $ ls > Luis.txt
 $ ps
 >>>
   PID TTY           TIME CMD
- 2275 ttys000    0:01.03 /bin/bash -l
- 2438 ttys001    0:00.09 /bin/bash -l
-22891 ttys001    0:00.00 ./notebook exemplo.txt
-22897 ttys001    0:00.00 (ls)
-22460 ttys002    0:00.02 -bash
+ 2275 ttys000    0:01.17 /bin/bash -l
+ 2438 ttys001    0:00.15 /bin/bash -l
+27552 ttys001    0:00.01 ./notebook exemplo.txt
+27558 ttys001    0:00.00 (ls)
+22460 ttys002    0:00.17 -bash
 <<<
 $ cat < Luis.txt
 >>>
@@ -56,7 +55,6 @@ Makefile
 Notebook.txt
 auxF.c
 buffer.c
-cat
 exemplo.txt
 main.c
 notebook
@@ -71,7 +69,6 @@ Makefile
 Notebook.txt
 auxF.c
 buffer.c
-cat
 exemplo.txt
 main.c
 notebook

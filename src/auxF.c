@@ -67,7 +67,6 @@ int checkCommand(char* frase){
     return 0;
 }
 
-
 int readln(int fildes, void *buff ) {
 	int x=0; char c;
 	char *st = (char *)buff;
@@ -88,7 +87,7 @@ int readall(int fildes, void *buff ) {
 	char *st = (char *)buff;
 
 	while ( read (fildes , &c , 1) > 0 ) {
-		if ( c == EOF) break; //quando encontrar paragrafo acaba
+		if ( c == EOF) break; //quando encontrar EOF acaba
 			*st = c;
 			st++;
 			x++;
