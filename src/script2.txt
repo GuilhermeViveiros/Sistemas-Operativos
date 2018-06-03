@@ -1,0 +1,21 @@
+--------> Script 2
+--------> Comandos complexos
+
+
+$ ls & ps
+$ ps
+Da me as 4 primeiro processos
+$| head -1
+
+Lista me os ficheiros
+$ ls || ps
+
+$ p || p
+$ ls || l
+
+$ ls -l ; ps && ls > Teste.txt & ps
+
+$| head -1 | cat
+
+Total:
+$ ls -l | head -1

@@ -4,27 +4,32 @@
 #include "buffer.h"
 
 
-//verifica qual o caracter do comando a especial a ser utilizado
-char verifica(char *line);
+//verifica qual o caracter do comando especial a ser utilizado
+char* verifica(char *line);
 
-//Executa programas concorrentes -> ls -l | cat | head -1
-char* paraleloSC(char *line,char *texto);
+//Executa comandos -> ls -l | cat | head -1
+char *paraleloSC(char *line, char *info);
 
-//Executa programas concorrentemente -> ls -l && cat | head -1
-char* concorrenteSC(char *command,char *texto);
+//Executa comandos sequecnias -> ls -l && ps 
+char* double_concorrente(char *comando1,char *comando2);
 
-//funcao que recebe um comando e um ficheiro de entrada ou saida (nao receber os dois ao mesmo tempo)
-char* redir (char *entrada , char *saida , char *comando ,char *texto);
+//Executa comandos paralelos -> ls -l & ps & ps -a
+char* concorrente(char *comando1 , char *comando2);
 
-/**
- * funcao que executa um comando e guarda o resultado sucessivamente no ficheiro
- *  se a funcao receber texto quer dizer que nao irá executar comando , pois pode ser comando paralelo , ls -l | head < x
- * */ 
-void redir_end(char *entrada , char *comando ,char *texto);
+//Executa ou comando1 ou comando2 -> ls -l || p
+char* double_pipe(char *comando1 , char *comando2);
 
-/**
- * funcao que executa redireciona o stderror de um comando nao defenido ou texto para um ficheiro de error
- * */
-void redir_error(char *saida , char *comando , char *texto , int redir_end);
+//Redireciona o resultado de um comando para um ficheiro de saida -> ls > Novo.txt
+char* redir_out(char *comando1 , char *saida);
 
-#endif
+//Aplica um comando ao conteudo de um ficheiro -> head -1 < Novo.txt
+char *redir_in(char *comando , char *entrada);
+
+//Redireciona o resultado de um comando para o fim de um ficheiro -> ls -l >> Novo.txt
+char* redir_end(char *comando , char *entrada);
+
+//Redireciona um erro para um ficheiro -> -l 2> Erros.txt
+char* redir_error(char *comando,char *texto,char *comando_texto , char *saida);
+
+
+#endif /* Cextra */

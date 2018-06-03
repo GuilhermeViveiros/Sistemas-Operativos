@@ -1,0 +1,27 @@
+  PID TTY           TIME CMD
+ 3969 ttys000    0:00.40 /bin/bash -l
+12012 ttys000    0:00.02 ./notebook script3.txt
+12023 ttys000    0:00.00 (notebook)
+  854 ttys002    0:00.03 /bin/bash -l
+ 1258 ttys002    0:00.22 /Library/Frameworks/GHC.framework/Versions/8.2.2-x86_64/usr/lib/ghc-8.2.2/bin/ghc -B/Library/Frameworks/GHC.framework/Versions/8.2.2-x86_64/usr/lib/ghc-8.2.2 --interactive
+ 1265 ttys003    0:00.02 /bin/bash -l
+ 1402 ttys004    0:00.08 /bin/bash -l
+
+  PID TTY           TIME CMD
+ 3969 ttys000    0:00.40 /bin/bash -l
+12012 ttys000    0:00.02 ./notebook script3.txt
+12023 ttys000    0:00.00 (notebook)
+  854 ttys002    0:00.03 /bin/bash -l
+ 1258 ttys002    0:00.22 /Library/Frameworks/GHC.framework/Versions/8.2.2-x86_64/usr/lib/ghc-8.2.2/bin/ghc -B/Library/Frameworks/GHC.framework/Versions/8.2.2-x86_64/usr/lib/ghc-8.2.2 --interactive
+ 1265 ttys003    0:00.02 /bin/bash -l
+ 1402 ttys004    0:00.08 /bin/bash -l
+
+  PID TTY           TIME CMD
+ 3969 ttys000    0:00.40 /bin/bash -l
+12012 ttys000    0:00.02 ./notebook script3.txt
+12023 ttys000    0:00.00 (notebook)
+12034 ttys000    0:00.00 ps -a
+  854 ttys002    0:00.03 /bin/bash -l
+ 1258 ttys002    0:00.22 /Library/Frameworks/GHC.framework/Versions/8.2.2-x86_64/usr/lib/ghc-8.2.2/bin/ghc -B/Library/Frameworks/GHC.framework/Versions/8.2.2-x86_64/usr/lib/ghc-8.2.2 --interactive
+ 1265 ttys003    0:00.02 /bin/bash -l
+ 1402 ttys004    0:00.08 /bin/bash -l

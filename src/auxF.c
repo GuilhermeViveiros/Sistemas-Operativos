@@ -14,6 +14,7 @@ char** mysystem(char *command);
 int checkCommand(char* frase);
 int readln(int fildes, void *buf );
 int readall(int fildes, void *buff );
+int Pcheck(char *line);
 
 //--------------------------------------------------------------------------------------------------
 char** mysystem (char *command){
@@ -59,6 +60,15 @@ char** mysystem (char *command){
     return argumentos;   
 }
 
+int Pcheck(char *line){
+    int i=0;
+    while(line[i]){
+        if(line[i] == '|' && line[i+1] != '|' ) return 1;
+        i++;
+    }
+    return 0;
+}
+
 int checkCommand(char* frase){
     while(*frase){
         if (*frase++=='$')
@@ -67,31 +77,18 @@ int checkCommand(char* frase){
     return 0;
 }
 
+
 int readln(int fildes, void *buff ) {
-	int x=0; char c;
+	int x; char c;
 	char *st = (char *)buff;
 
-	while (read (fildes , &c , 1) > 0 ) {
-        if( c == EOF) return -1; //quando encontrar um EOF acaba
-        if ( c == '\n') break; //quando encontrar paragrafo para
+	while ((x=read (fildes , &c , 1)) > 0 ) {
+
+        if (c == '\n') break; //quando encontrar paragrafo para
 			*st = c;
 			st++;
-			x++;
 	}
- 	*st = '\0';
+ 	*st = '\0';    
  	return x;
 }
 
-int readall(int fildes, void *buff ) {
-	int x=0; char c;
-	char *st = (char *)buff;
-
-	while ( read (fildes , &c , 1) > 0 ) {
-		if ( c == EOF) break; //quando encontrar EOF acaba
-			*st = c;
-			st++;
-			x++;
-	}
- 	*st = '\0';
- 	return x;
-}

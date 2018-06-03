@@ -1,0 +1,21 @@
+--------> Script 1
+--------> Comandos simples
+
+Lista os ficheiros :
+$ ls
+Ve os primeiro 4 ficheiros
+$| head  -1
+$ echo "data de hoje" && date 
+$3| cat
+
+Testes de ls:
+$ ls
+$ ls -l
+$ ls -lah
+$ ls -lh
+$ ls -lah
+
+
+Testes de ps:
+$ ps
+$ ps -a

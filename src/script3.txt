@@ -1,0 +1,35 @@
+--------> Script 3
+--------> Comandos complexos e Redirecionamentos
+
+Escreve o que está no ecra para um ficheiro
+$ ps -a > Teste3.txt
+$ ps
+Da me as 4 primeiro processos
+$| head -1
+
+Lista me os ficheiros
+$ ls -l | cat | head -3 |  head -1
+
+Le dos ficheiros texto
+$ cat < Teste3.txt
+$ cat  < Teste3.txt
+
+$ p || a
+
+$ ls -l ; ps && ls > Teste.txt & ps
+
+$| head -1 | cat
+
+Total:
+$ ls -l | head -1
+
+Processos para ficheiro:
+$ ps > Ficheiros.txt
+$ ps  >> Ficheiros.txt
+$ ps -a >> Ficheiros.txt
+
+
+Erros para ficheiros:
+$ aa 2> Erro.txt
+
+

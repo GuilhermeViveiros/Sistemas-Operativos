@@ -1,0 +1,27 @@
+total 224
+-rw-r--r--@ 1 guilhermeviveiros  staff   8541  1 Jun 17:22 Cextra.c
+-rw-r--r--  1 guilhermeviveiros  staff     99  1 Jun 17:24 Erro.txt
+-rw-r--r--  1 guilhermeviveiros  staff   1419  1 Jun 17:24 Ficheiros.txt
+-rw-r--r--@ 1 guilhermeviveiros  staff    540 19 Mai 22:56 Makefile
+-rw-r--r--  1 guilhermeviveiros  staff    180  1 Jun 17:24 Teste.txt 
+-rw-r--r--  1 guilhermeviveiros  staff    457  1 Jun 17:24 Teste3.txt
+-rw-r--r--@ 1 guilhermeviveiros  staff   2859  1 Jun 16:17 auxF.c
+-rw-r--r--@ 1 guilhermeviveiros  staff  10629  1 Jun 17:22 bheap.c
+-rw-r--r--  1 guilhermeviveiros  staff   9540  1 Jun 17:22 buffer.c
+-rw-r--r--  1 guilhermeviveiros  staff      0  1 Jun 17:24 lcript3.txt
+-rw-r--r--@ 1 guilhermeviveiros  staff   3199  1 Jun 17:22 main.c
+-rwxr-xr-x  1 guilhermeviveiros  staff  28276  1 Jun 17:19 notebook
+drwxr-xr-x  3 guilhermeviveiros  staff    102 31 Mai 13:56 notebook.dSYM
+drwxr-xr-x  7 guilhermeviveiros  staff    238  1 Jun 17:19 obj
+-rw-r--r--  1 guilhermeviveiros  staff   1714  1 Jun 17:24 resultados
+-rw-r--r--  1 guilhermeviveiros  staff    242  1 Jun 17:22 script1.txt
+-rw-r--r--  1 guilhermeviveiros  staff    240  1 Jun 17:22 script2.txt
+-rw-r--r--  1 guilhermeviveiros  staff   4307  1 Jun 17:24 script3.txt
+  PID TTY           TIME CMD
+ 3969 ttys000    0:00.40 /bin/bash -l
+12012 ttys000    0:00.01 ./notebook script3.txt
+12023 ttys000    0:00.00 (notebook)
+  854 ttys002    0:00.03 /bin/bash -l
+ 1258 ttys002    0:00.22 /Library/Frameworks/GHC.framework/Versions/8.2.2-x86_64/usr/lib/ghc-8.2.2/bin/ghc -B/Library/Frameworks/GHC.framework/Versions/8.2.2-x86_64/usr/lib/ghc-8.2.2 --interactive
+ 1265 ttys003    0:00.02 /bin/bash -l
+ 1402 ttys004    0:00.08 /bin/bash -l

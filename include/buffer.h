@@ -1,6 +1,7 @@
 #ifndef buffer_h
 #define buffer_h
 
+#include <signal.h>
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -24,28 +25,24 @@ typedef void (*Ffree)( void *) ;
     Free function.
 */
 
-/**
-*Estrutura de um bloco auxiliar ao Buff 
-*/
+//Estrutura de um bloco auxiliar ao Buff 
 struct blocos;
 
-/**
-*Estrutura de um buff nomeada Buff
-*/
+//Estrutura de um buff nomeada Buff
 typedef struct buff *Buff;
 
 //---------------------------------------------------------------------------------------------------------
-//Inicializa o buffer
+
+// Inicializa o buffer através de um descritor
 Buff create_buffer(int filedes);
 
-//Começa a prencher os blocos do buffer a partir do ficheiro
+//Preenche sequencialmente cada bloco do buffer com uma respetiva frase do ficheiro
 Buff load_buffer(Buff x,char *y);
 
-//Destroi o buffer
+//Destroi a memoria alocada pelo buffer
 void destroy_buffer(Buff x);
 
-//Getters//--------------------------------------------------------------------------------------------------
-
+//Getters!--------------------------------------------------------------------------------------------------
 int getSize(Buff x);//devolve o tamanho do buff , blocos que ele tem
 
 int getUsed(Buff x);//devolve a quantidade de blocos usados
@@ -64,11 +61,11 @@ char **getWords(Buff x , int i);//devolve as palavras de uma frase
 
 char *getResult(Buff x, int i);//devolve o resultado do comando
 
-//Setters//--------------------------------------------------------------------------------------------------
+//Setters!--------------------------------------------------------------------------------------------------
 void setSize(Buff x , int y);//define o tamanho do buffer
 
 void setFile(Buff x,int filedes);//define a file do buffer
 
-void *setResult(Buff x, char *r , int i);//define o resultado de um comando
+void setResult(Buff x, char *r , int i);//define o resultado de um comando
 
-#endif  
+#endif  /* buffer */

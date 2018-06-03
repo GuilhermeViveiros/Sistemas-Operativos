@@ -8,19 +8,18 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-//devolve o conjuntos de palavras de uma determinada frase
-char** mysystem(char *command);
+//Devolve o conjuntos de palavras de uma determinada frase
+char** mysystem(char *phrase);
 
-//verifica se uma determinada instrucao é comando ou nao
+//verifica se uma determinada instrucao é comando
 int checkCommand(char* frase);
 
-//Le de um ficheiro para um buffer até encontrar '\n'
+
+//Le toda a informação de um ficheiro para um buff
 int readln(int fildes, void *buf );
 
+//verifica se existem pipes(|) num comando
+int Pcheck(char *line);
 
-/**
- * Dado um dado ficheiro , guarda me tudo diretamente num buffer
- * */// -> estou a usar na concorrentesSC
-int readall(int fildes, void *buff );
 
 #endif /* aux */
